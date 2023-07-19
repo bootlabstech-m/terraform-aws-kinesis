@@ -29,16 +29,16 @@ resource "aws_kinesis_firehose_delivery_stream" "stream_to_s3" {
       }
     }
 
-    buffer_size        = each.value.buffer_size
-    buffer_interval    = each.value.buffer_interval
+    # buffer_size        = each.value.buffer_size
+    # buffer_interval    = each.value.buffer_interval
 
     s3_backup_mode     = each.value.s3_backup_mode
 
     s3_backup_configuration {
       role_arn           = aws_iam_role.firehose_role.arn
       bucket_arn         = each.value.backup_bucket_arn
-      buffer_size        = each.value.backup_buffer_size
-      buffer_interval    = each.value.backup_buffer_interval
+      # buffer_size        = each.value.backup_buffer_size
+      # buffer_interval    = each.value.backup_buffer_interval
       compression_format = each.value.backup_compression_format
     }
 
