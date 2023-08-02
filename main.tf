@@ -47,6 +47,10 @@ resource "aws_kinesis_firehose_delivery_stream" "stream_to_s3" {
 # }
 
 }
+  lifecycle {
+    ignore_changes = [tags]
+  }
+
 }
 resource "aws_iam_role" "firehose_role" {
   name = "firehose_role"
@@ -66,6 +70,10 @@ resource "aws_iam_role" "firehose_role" {
   ]
 }
 EOF
+  lifecycle {
+    ignore_changes = [tags]
+  }
+
 }
 resource "aws_iam_role_policy" "policy_for_firehose_access_to_glue" {
   name = "firehose_access_to_glue"
@@ -83,5 +91,7 @@ resource "aws_iam_role_policy" "policy_for_firehose_access_to_glue" {
       },
     ]
   })
+
+
 }
 
